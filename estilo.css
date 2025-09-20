@@ -48,7 +48,7 @@ nav a {
   display: none;
   position: absolute;
   right: 20px;
-  top: 50%;
+  top: 30%;
   transform: translateY(-50%);
   z-index: 1000;
 }
@@ -56,14 +56,13 @@ nav a {
 /* ===== Menú móvil oculto ===== */
 .menu-mobile {
   position: absolute;
-  top: 60px;
+  top: 40px;
   right: 20px;
-  background: white;
+  background: transparent;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   flex-direction: column;
   min-width: 150px;
-  padding: 15px;
+  padding: 10px;
   opacity: 0;
   transform: translateY(-10px);
   pointer-events: none;
@@ -80,7 +79,7 @@ nav a {
 .menu-mobile a {
   color: black;
   text-decoration: none;
-  margin: 10px 0;
+  margin: 6px 0;
   font-weight: bold;
 }
 
@@ -339,4 +338,161 @@ p {
     margin-top: 10px;
     font-size: 0.95rem;
     color: #444;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    #proyectos {
+        padding-top: 60px;
+        padding-bottom: 50px;
+    }
+    .carrusel {
+        gap: 15px;
+        padding-bottom: 70px;
+    }
+    .proyecto {
+        flex: 0 0 250px; /* hace los proyectos un poco más chicos */
+    }
+}
+
+/* Ajustes para móviles muy pequeños */
+@media (max-width: 480px) {
+    #proyectos {
+        padding-top: 70px;
+        padding-bottom: 50px;
+    }
+    .carrusel {
+        gap: 10px;
+        padding-bottom: 60px;
+    }
+    .proyecto {
+        flex: 0 0 200px;
+    }
+}
+
+/*-------------------------------------------CONTACTOS-------------------------------------------*/
+.contenido-flex {
+    display: flex;
+    align-items:center;
+    justify-content:center; 
+    gap: 10px;
+    margin: 0 10px;
+}
+.contenedorCon { 
+    margin-left: 50px; 
+} 
+.contenedorCon p { 
+    margin-top: 10px; 
+    color: #000000; 
+    font-size: 20px;
+} 
+
+form { 
+    display: flex; 
+    flex-direction: column; 
+    max-width: 600px; 
+    width: 90%;
+    padding: 20px; 
+    gap: 10px; 
+    background-color: transparent; 
+    border-radius: 10px; 
+    box-shadow: 0px 0px 10px; 
+    flex: 1; 
+} 
+
+form input, form textarea {
+    width: 100%; /* ancho completo */
+    padding: 10px 15px; /* espacio interno */ 
+    font-size: 17px; /* texto más grande */ 
+    border: 1px solid #ccc; 
+    box-sizing: border-box; 
+    font-family: inherit; 
+} 
+
+    #mensaje { 
+    width: 100%; /* ancho del cuadro */ 
+    min-height: 150px; /* altura inicial */ 
+    padding: 12px; 
+    font-size: 16px; 
+    border: 1px solid #ccc; 
+    box-sizing: border-box; 
+    resize: none; /* esto bloquea que el usuario cambie el tamaño */ 
+}
+form button { 
+    padding: 12px 20px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    background-color: #ffb4a2;
+    color: #ffffff;
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+} 
+form button:hover { 
+    background-color: #fcd5ce; 
+} 
+.imgLog { 
+    display: flex; 
+    flex-direction:row;
+    align-items: center; 
+    justify-content: center;
+}
+
+.imgLog img {
+    max-width: 200px; 
+    height: auto; 
+    margin: 50px; 
+    transition: transform 0.3s ease; 
+}
+.imgLog img:hover { 
+    transform: scale(1.1); /* zoom del 10% */ 
+} 
+
+.imgLog { display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    flex: 1; 
+} 
+.imgLog img { 
+    max-width: 200px; 
+    height: auto; 
+    margin: 50px; 
+    transition: transform 0.3s ease; 
+} 
+.imgLog img:hover {
+    transform: scale(1.1); }
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .contenido-flex {
+        flex-direction: column; 
+    }
+
+    form {
+        order: 1;
+        margin-top:30px; 
+        margin-right: 10px;
+    }
+
+    .imgLog {
+        order: 2; 
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    .imgLog img {
+        margin: auto;
+        max-width: 160px;
+    }
+    .contenedorCon p h1{
+        align-items: center;
+        justify-content: center;
+    }
+
+    .contenedorCon h1,
+    .contenedorCon h2,
+    .contenedorCon p {
+        text-align: center;
+    }
 }
