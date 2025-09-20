@@ -18,20 +18,38 @@
         <div class="logo">
             <a href="index.html"><img src="img/Logotipo.png" alt="Logotipo"></a>
         </div>
-        <nav>
-            <a href="paginas/acercademi.html">Acerca de mí</a></li>
+        <nav class="menu-desktop">
+            <a href="paginas/acercademi.html">Acerca de mí</a>
             <a href="paginas/contactos.html">Contactos</a>
         </nav>
+
+
+<!-- Botón hamburguesa -->
+  <div class="hamburguesa" id="hamburguesa" aria-label="Abrir menú" aria-expanded="false">
+    ☰
+  </div>
     </header>
 
-    <div class="hero">
-        <div class="fondo-liquido"></div>
-        <div class="contenido">
-            <h1>Angela Echevarria</h1>
-            <p>Desarrolladora web front-end</p>
-            <a href="paginas/misproyectos.html" class="boton">Ver proyectos</a>
-        </div>
-    </div>
-</body>
+  <!-- Menú móvil -->
+<div class="menu-mobile" id="menuMobile" aria-hidden="true">
+    <a href="paginas/acercademi.html">Acerca de mí</a>
+    <a href="paginas/contactos.html">Contactos</a>
+</div>
 
+<!--Burbuja-->
+<div class="hero">
+  <div class="burbuja-wrapper">
+    <div class="burbuja-inner">
+      <div class="fondo-liquido"></div>
+    </div>
+  </div>
+
+  <div class="contenido">
+    <h1>Angela Echevarria</h1>
+    <p>Desarrolladora web front-end</p>
+    <a href="paginas/misproyectos.html" class="boton">Ver proyectos</a>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
 </html>.

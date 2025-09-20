@@ -1,23 +1,26 @@
+/*-------------------------------------------RESET Y GENERAL-------------------------------------------*/
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
-/*------------------------------------------------------HEADER-------------------------------------------------------------------*/
+/*-------------------------------------------HEADER-------------------------------------------*/
 header {
-    background-color: transparent;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1;
+    background: transparent;
+    padding: 0 20px;
+    position: relative;  
+    z-index: 5; /* bajo para que la burbuja esté encima */
 }
 
 nav {
@@ -36,70 +39,177 @@ nav a {
 .logo img {
     width: 100px;
     height: auto;
-    margin-left: 40px;
-    margin-top: 15px;
 }
 
-/*---------------------------------------------------------BODY-------------------------------------------------------------------*/
+/* ===== Botón hamburguesa ===== */
+.hamburguesa { 
+  font-size: 35px;
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+/* ===== Menú móvil oculto ===== */
+.menu-mobile {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  flex-direction: column;
+  min-width: 150px;
+  padding: 15px;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  display: flex;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.menu-mobile.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.menu-mobile a {
+  color: black;
+  text-decoration: none;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+
+/* ===== Responsive ===== */
+@media (max-width: 535px) {
+  .menu-desktop { display: none; }
+  .hamburguesa { display: block; }
+}
+
+/*-------------------------------------------BODY-------------------------------------------*/
 body {
-    font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #e0c3fc, #8ec5fc, #f9f9f9);
-    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
-
+/*-------------------------------------------HERO-------------------------------------------*/
 .hero {
-    position: relative;
-    height: 84vh;
-    overflow: hidden;
+    position:relative;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1; /* para estar por encima del header si se quiere */
 }
 
-body .acercademi .contactos {
-    background: linear-gradient(to bottom right, #fefefe, #d3e0ea);
+.hero .contenido {
+    position: relative;
+    z-index: 11; /* contenido siempre encima de la burbuja */
+    text-align: center;
 }
 
-/*!--------------------------------------------------------BURBUJA-----------------------------------------------------------------*/
-.fondo-liquido {
+.hero h1 {
+    font-size: 45px;
+}
+
+.hero p {
+    font-size: 25px;
+}
+
+/* Media queries para tablets y móviles */
+@media (max-width: 900px) {
+    .hero .contenido h1 {
+        font-size: 36px;
+    }
+    .hero .contenido p {
+        font-size: 20px;
+    }
+    .hero .contenido .boton {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero .contenido h1 {
+        font-size: 28px;
+    }
+    .hero .contenido p {
+        font-size: 16px;
+    }
+    .hero .contenido .boton {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero .contenido h1 {
+        font-size: 24px;
+    }
+    .hero .contenido p {
+        font-size: 14px;
+    }
+    .hero .contenido .boton {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+/*-------------------------------------------BURBUJA-------------------------------------------*/
+.burbuja-wrapper {
     position: absolute;
-    width: 650px;
-    height: 600px;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(20deg) scale(1.05);
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 10; /* burbuja encima del header */
+}
+
+.burbuja-inner {
+    animation: moverLiquido 12s ease-in-out infinite;
+}
+
+.fondo-liquido {
+    width: 60vw;
+    height: 60vw;
+    max-width: 750px;
+    max-height: 750px;
     background: radial-gradient(circle at 30% 30%, #a1c6ea, #f3ac9f, #f7f7f7);
     border-radius: 65% 35% 60% 40% / 55% 45% 30% 70%;
-    animation: moverLiquido 12s ease-in-out infinite;
-    z-index: 0;
     filter: blur(1px);
     opacity: 0.8;
 }
 
+/* Animación */
 @keyframes moverLiquido {
-
-    0%,
-    100% {
-        border-radius: 65% 35% 60% 40% / 55% 45% 30% 70%;
-        ;
-        ;
-        transform: translate(-50%, -50%) translateY(0px) scale(1);
-    }
-
-    50% {
-        border-radius: 40% 60% 55% 45% / 40% 40% 60% 60%;
-        transform: translate(-50%, -50%) translateY(-20px) scale(1.05);
+    0%, 100% {transform: translateY(0px) scale(1);}
+    50% {transform: translateY(-20px) scale(1);}
+}
+@media (max-width: 768px) {
+    .fondo-liquido {
+        width: 70vw;
+        height: 70vw;
+        max-width: 600px;
+        max-height: 600px;
     }
 }
 
-.contenido {
-    position: relative;
-    z-index: 2;
-    text-align: center;
+/* Celulares chicos */
+@media (max-width: 480px) {
+    .fondo-liquido {
+        width: 85vw;
+        height: 85vw;
+        max-width: 420px;
+        max-height: 420px;
+    }
 }
-
-/*!---------------------------------------------------BOTON----------------------------------------------------------------------*/
+/*-------------------------------------------BOTONES Y TEXTO-------------------------------------------*/
 h1 {
     font-size: 45px;
     color: #000000;
@@ -118,6 +228,7 @@ p {
     border-radius: 25px;
     text-decoration: none;
     font-weight: bold;
+    font-size: 20px;
     transition: background-color 0.3s;
 }
 
@@ -125,13 +236,12 @@ p {
     background-color: #fcd5ce;
 }
 
-/*?------------------------------------------------------ACERCA DE MI-------------------------------------------------------------*/
+/*-------------------------------------------ACERCA DE MI-------------------------------------------*/
 .contendor {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
     margin-top: 50px;
-
 }
 
 .contendor img {
@@ -152,77 +262,48 @@ p {
     margin-top: 15px;
 }
 
-/*?------------------------------------------------------CONTACTOS-------------------------------------------------------------*/
+@media (max-width: 1100px) {
+    .contendor {
+        flex-direction: column;
+        text-align: center;
 
-.contenedorCon {
-    margin-left: 50px;
-
+    }
+    .contendor img{
+        max-width: 60%;
+        margin: 30px auto;
+    }
+    .texto {
+        margin: 20px auto;
+    }
 }
 
-.contenedorCon p {
-    margin-top: 10px;
-    color: #000000;
-    font-size: 20px;
+/* Media query pantallas pequeñas (móvil) */
+@media (max-width: 600px) {
+    .contendor {
+        flex-direction: column; /* texto arriba, img abajo */
+        text-align:center;     /* centrado */
+    }
+
+    .contendor img {
+        max-width: 80%; /* que no ocupe toda la pantalla */
+        margin: 20px auto;
+    }
+
+    .texto {
+        margin:20px auto;
+    }
 }
-
-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 400px;
-    width: 400px;
-    margin-left: 50px;
-    padding: 20px;
-    gap: 10px;
-    background-color: transparent;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px;
-    flex: 1;
-}
-
-button {
-    background-color: #ffb4a2;
-    color: white;
-    padding: 12px 24px;
-    margin-top: 15px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.imgLog {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: center;
-
-}
-
-.imgLog img {
-    max-width: 200px;
-    height: auto;
-    margin: 50px;
-    display: inline;
-    transition: transform 0.3s ease;
-}
-
-.imgLog img:hover {
-    transform: scale(1.1);
-    /* zoom del 10% */
-}
-
-/*?----------------------------------------------------MIS PROYECTOS-------------------------------------------------------------*/
+/*-------------------------------------------PROYECTOS-------------------------------------------*/
 #proyectos {
-    padding: 40px 20px;
+    padding: 20px 10px;
     background-color: transparent;
     text-align: center;
 }
 
-.proyectos h2 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: #222;
+#proyectos h2 {
+    font-size:1.5rem;
+    margin-bottom: 10px;
+    color: #000000;
 }
 
 .carrusel {
@@ -230,7 +311,7 @@ button {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     gap: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 90px;
 }
 
 .proyecto {

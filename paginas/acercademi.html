@@ -18,11 +18,22 @@
         <div class="logo">
             <a href="../index.html"><img src="../img/Logotipo.png" alt="Logotipo"></a>
         </div>
-        <nav>
+        <nav class="menu-desktop">
             <a href="../index.html">Inicio</a>
             <a href="contactos.html">Contactos</a>
         </nav>
-    </header>
+
+    <!-- Botón hamburguesa -->
+    <div class="hamburguesa" id="hamburguesa" aria-label="Abrir menú" aria-expanded="false">
+    ☰
+    </div>
+</header>
+
+<!-- Menú móvil -->
+<div class="menu-mobile" id="menuMobile" aria-hidden="true">
+    <a href="../index.html">Inicio</a>
+    <a href="contactos.html">Contactos</a>
+</div>
 
     <section id="sobremi" class="textosobremi">
         <div class="contendor">
@@ -46,6 +57,6 @@
             </div>
         </div>
     </section>
+<script src="../script.js"></script>
 </body>
-
 </html>
